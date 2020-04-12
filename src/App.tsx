@@ -18,8 +18,12 @@ import teal from "@material-ui/core/colors/teal";
 
 const theme = createMuiTheme({
     palette: {
-        primary: lightBlue,
-        secondary: teal
+        primary: {
+            main: "#29abe2"
+        },
+        secondary: {
+            main: "#ff7bac"
+        }
     },
 });
 
@@ -96,19 +100,19 @@ function App() {
                                             >
                                                 <Button
                                                     variant="outlined"
-                                                    endIcon={<MusicNoteIcon />}
+                                                    endIcon={<MusicNoteIcon color="secondary"/>}
                                                 >
                                                     My Music
                                                 </Button>
                                                 <Button
                                                     variant="outlined"
-                                                    endIcon={<WorkIcon />}
+                                                    endIcon={<WorkIcon color="secondary"/>}
                                                 >
                                                     My Work
                                                 </Button>
                                                 <Button
                                                     variant="outlined"
-                                                    endIcon={<EmojiObjectsOutlinedIcon />}
+                                                    endIcon={<EmojiObjectsOutlinedIcon color="secondary" />}
                                                 >
                                                     My Thoughts
                                                 </Button>
