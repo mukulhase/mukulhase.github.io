@@ -41,6 +41,7 @@ function App() {
                         justify="flex-end"
                         alignItems="center"
                         style={{
+                            height:"100%"
                         }}
                         spacing={5}
                     >
@@ -49,8 +50,7 @@ function App() {
                               justify="center"
                               alignItems="center"
                               style={{
-                                  height:"100vh",
-                                  maxHeight:"100%"
+                                  flexGrow:1
                               }}
                         >
                             <Grid
@@ -117,7 +117,7 @@ function App() {
                         </Grid>
                         <Grid item>
                             <div>
-                                {urls.map(url=><span style={{padding:5}}><SocialIcon url={url}></SocialIcon></span>)}
+                                {urls.map(url=><span key={url} style={{padding:5}}><SocialIcon url={url}></SocialIcon></span>)}
                             </div>
                         </Grid>
                     </Grid>
