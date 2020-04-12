@@ -11,9 +11,8 @@ import MusicNoteIcon from "@material-ui/icons/MusicNoteOutlined";
 import WorkIcon from "@material-ui/icons/WorkOutlineOutlined";
 import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
 import ButtonGroup from "@material-ui/core/ButtonGroup";
-import Box from "@material-ui/core/Box";
 
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import teal from "@material-ui/core/colors/teal";
 
@@ -35,17 +34,15 @@ function App() {
         <ThemeProvider theme={theme}>
             <Container maxWidth={"md"} className="App">
                 <div className="App-center">
-                    <Grid
-                        container
-                        direction="column"
-                        justify="flex-end"
-                        alignItems="center"
-                        style={{
-                            height:"100%"
-                        }}
-                        spacing={5}
-                    >
-                        <Grid item container
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        flexWrap: "nowrap",
+                        justifyContent: "flex-end",
+                        alignItems: "center",
+                        height: "100%"
+                    }}>
+                        <Grid container
                               direction="column"
                               justify="center"
                               alignItems="center"
@@ -55,7 +52,9 @@ function App() {
                         >
                             <Grid
                                 item
-                                style={{width: "100%"}}
+                                style={{
+                                    width: "100%",
+                                }}
                             >
                                 <Tilt
                                     gyroscope={true}
@@ -66,9 +65,12 @@ function App() {
                                     <Grid
                                         container
                                         justify="center"
-                                        spacing={5}
                                     >
-                                        <Grid item style={{width:"100%"}}>
+                                        <Grid item style={{
+                                            width:"100%",
+                                            padding: 50,
+                                            overflow: "hidden"
+                                        }}>
                                             <ReactVivus
                                                 id="foo"
                                                 option={{
@@ -85,7 +87,9 @@ function App() {
                                                 }}
                                             />
                                         </Grid>
-                                        <Grid item>
+                                        <Grid item style={{
+                                            padding: 20
+                                        }}>
                                             <ButtonGroup
                                                 orientation="vertical"
                                                 color="primary"
@@ -111,16 +115,17 @@ function App() {
                                             </ButtonGroup>
                                         </Grid>
                                     </Grid>
-
                                 </Tilt>
                             </Grid>
                         </Grid>
-                        <Grid item>
+                        <div style={{
+                            padding: 20
+                        }}>
                             <div>
                                 {urls.map(url=><span key={url} style={{padding:5}}><SocialIcon url={url}></SocialIcon></span>)}
                             </div>
-                        </Grid>
-                    </Grid>
+                        </div>
+                    </div>
                 </div>
             </Container>
         </ThemeProvider>
