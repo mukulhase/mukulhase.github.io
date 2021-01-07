@@ -101,12 +101,14 @@ function App() {
                                                 <Button
                                                     variant="outlined"
                                                     endIcon={<MusicNoteIcon color="secondary"/>}
+                                                    href={"https://music.mukulhase.com"}
                                                 >
                                                     My Music
                                                 </Button>
                                                 <Button
                                                     variant="outlined"
                                                     endIcon={<WorkIcon color="secondary"/>}
+                                                    href={"http://mukulhase.com/Mukul_Hase_Resume/main.pdf"}
                                                 >
                                                     My Work
                                                 </Button>
