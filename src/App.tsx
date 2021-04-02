@@ -2,9 +2,8 @@ import React from 'react';
 import './App.css';
 import Container from "@material-ui/core/Container";
 import {Grid} from "@material-ui/core";
-
-
 import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
+
 import Social from './Social';
 import Hero from './Hero';
 

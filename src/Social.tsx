@@ -5,7 +5,8 @@ let urls = [
     "https://www.facebook.com/mukul.hase",
     "https://github.com/mukulhase",
     "https://www.linkedin.com/in/mukul-hase-42069/",
-    "https://open.spotify.com/user/213i4eofdg43qmfvheiso7tza"
+    "https://open.spotify.com/user/213i4eofdg43qmfvheiso7tza",
+    "https://www.instagram.com/mkhase/"
 ];
 
 const Social = () => (
