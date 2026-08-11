@@ -1,84 +1,55 @@
-import React from 'react';
-import ReactVivus from 'react-vivus';
+import { useEffect, useState } from 'react';
 import Tilt from 'react-parallax-tilt';
-import Button from "@material-ui/core/Button";
-import MusicNoteIcon from "@material-ui/icons/MusicNoteOutlined";
-import WorkIcon from "@material-ui/icons/WorkOutlineOutlined";
-import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import {Grid} from "@material-ui/core";
+
 import logo from './logo.svg';
 
-const Hero = () => (
-    <Grid
-        item
-        style={{
-            width: "100%",
-        }}
+const usePrefersReducedMotion = () => {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updatePreference = () => setPrefersReducedMotion(mediaQuery.matches);
+
+    updatePreference();
+    mediaQuery.addEventListener('change', updatePreference);
+    return () => mediaQuery.removeEventListener('change', updatePreference);
+  }, []);
+
+  return prefersReducedMotion;
+};
+
+const Hero = () => {
+  const prefersReducedMotion = usePrefersReducedMotion();
+
+  return (
+    <Tilt
+      className="hero-card"
+      tiltEnable={!prefersReducedMotion}
+      tiltMaxAngleX={8}
+      tiltMaxAngleY={8}
+      glareEnable={!prefersReducedMotion}
+      glareMaxOpacity={0.08}
+      scale={1.01}
+      transitionSpeed={800}
     >
-        <Tilt
-            gyroscope={true}
-            tiltAngleXInitial={10}
-            tiltAngleYInitial={10}
-            trackOnWindow={true}
+      <img className="signature" src={logo} alt="Mukul Hase" draggable={false} />
+      <nav className="featured-links" aria-label="Featured links">
+        <a className="featured-link" href="https://music.mukulhase.com">
+          <span>My Music</span>
+          <span aria-hidden="true">♫</span>
+        </a>
+        <a
+          className="featured-link"
+          href="/Mukul_Hase_Resume/main.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-            <Grid
-                container
-                justify="center"
-            >
-                <Grid item style={{
-                    width:"100%",
-                    padding: 50,
-                    overflow: "hidden"
-                }}>
-                    <ReactVivus
-                        id="foo"
-                        option={{
-                            file: logo,
-                            animTimingFunction: 'EASE',
-                            type: 'scenario',
-                            onReady: console.log,
-                        }}
-                        className="App-logo"
-                        callback={(myVivus: any) => {
-                            if (myVivus.getStatus() === 'end') {
-                                myVivus.reset().play();
-                            }
-                        }}
-                    />
-                </Grid>
-                <Grid item style={{
-                    padding: 20
-                }}>
-                    <ButtonGroup
-                        orientation="vertical"
-                        color="primary"
-                    >
-                        <Button
-                            variant="outlined"
-                            endIcon={<MusicNoteIcon color="secondary"/>}
-                            href={"https://music.mukulhase.com"}
-                        >
-                            My Music
-                        </Button>
-                        <Button
-                            variant="outlined"
-                            endIcon={<WorkIcon color="secondary"/>}
-                            href={"http://mukulhase.com/Mukul_Hase_Resume/main.pdf"}
-                        >
-                            My Work
-                        </Button>
-                        <Button
-                            variant="outlined"
-                            endIcon={<EmojiObjectsOutlinedIcon color="secondary" />}
-                        >
-                            My Thoughts
-                        </Button>
-                    </ButtonGroup>
-                </Grid>
-            </Grid>
-        </Tilt>
-    </Grid>
-);
+          <span>My Résumé</span>
+          <span className="link-icon" aria-hidden="true">PDF</span>
+        </a>
+      </nav>
+    </Tilt>
+  );
+};
 
 export default Hero;

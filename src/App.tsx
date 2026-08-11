@@ -1,51 +1,18 @@
-import React from 'react';
 import './App.css';
-import Container from "@material-ui/core/Container";
-import {Grid} from "@material-ui/core";
-import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
 
-import Social from './Social';
 import Hero from './Hero';
-
-const theme = createMuiTheme({
-    palette: {
-        primary: {
-            main: "#29abe2"
-        },
-        secondary: {
-            main: "#ff7bac"
-        }
-    },
-});
+import Social from './Social';
 
 const App = () => (
-        <ThemeProvider theme={theme}>
-            <Container maxWidth={"md"} className="App">
-                <div className="App-center">
-                    <div style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        flexWrap: "nowrap",
-                        justifyContent: "flex-end",
-                        alignItems: "center",
-                        height: "100%"
-                    }}>
-                        <Grid container
-                              direction="column"
-                              justify="center"
-                              alignItems="center"
-                              style={{
-                                  flexGrow:1
-                              }}
-                        >
-                            <Hero />
-                        </Grid>
-                        <Social />
-                    </div>
-                </div>
-            </Container>
-        </ThemeProvider>
-        );
-
+  <main className="app">
+    <section className="hero-section" aria-labelledby="page-title">
+      <h1 id="page-title" className="visually-hidden">
+        Mukul Hase
+      </h1>
+      <Hero />
+    </section>
+    <Social />
+  </main>
+);
 
 export default App;
