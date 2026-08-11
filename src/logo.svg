@@ -21,6 +21,10 @@
                 stroke-dasharray: 630;
                 stroke-dashoffset: 630;
             }
+            path[data-start="60"], path[data-start="80"],
+            path[data-start="180"], path[data-start="200"] {
+                animation-timing-function: linear;
+            }
             path[data-start="0"] { animation-name: draw-0; }
             path[data-start="60"] { animation-name: draw-60; }
             path[data-start="80"] { animation-name: draw-80; }
@@ -34,10 +38,10 @@
             }
             @keyframes draw-60 {
                 0%, 23.077% { stroke-dashoffset: 1045; }
-                30.769%, 100% { stroke-dashoffset: 0; }
+                37.474%, 100% { stroke-dashoffset: 0; }
             }
             @keyframes draw-80 {
-                0%, 30.769% { stroke-dashoffset: 630; }
+                0%, 37.474% { stroke-dashoffset: 630; }
                 46.154%, 100% { stroke-dashoffset: 0; }
             }
             @keyframes draw-110 {
@@ -46,10 +50,10 @@
             }
             @keyframes draw-180 {
                 0%, 69.231% { stroke-dashoffset: 1045; }
-                76.923%, 100% { stroke-dashoffset: 0; }
+                83.628%, 100% { stroke-dashoffset: 0; }
             }
             @keyframes draw-200 {
-                0%, 76.923% { stroke-dashoffset: 630; }
+                0%, 83.628% { stroke-dashoffset: 630; }
                 92.308%, 100% { stroke-dashoffset: 0; }
             }
 
