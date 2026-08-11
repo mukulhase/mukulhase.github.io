@@ -23,6 +23,35 @@ const usePrefersReducedMotion = () => {
 
 const App = () => {
   const prefersReducedMotion = usePrefersReducedMotion();
+  const [gyroscopeEnabled, setGyroscopeEnabled] = useState(false);
+  const [needsMotionPermission, setNeedsMotionPermission] = useState(false);
+
+  useEffect(() => {
+    const orientationEvent = window.DeviceOrientationEvent as typeof DeviceOrientationEvent & {
+      requestPermission?: () => Promise<'granted' | 'denied'>;
+    };
+
+    if (typeof orientationEvent?.requestPermission === 'function') {
+      setNeedsMotionPermission(true);
+    } else {
+      setGyroscopeEnabled(true);
+    }
+  }, []);
+
+  const enableMotion = async () => {
+    const orientationEvent = window.DeviceOrientationEvent as typeof DeviceOrientationEvent & {
+      requestPermission?: () => Promise<'granted' | 'denied'>;
+    };
+
+    try {
+      const permission = await orientationEvent.requestPermission?.();
+      setGyroscopeEnabled(permission === 'granted');
+    } catch {
+      setGyroscopeEnabled(false);
+    } finally {
+      setNeedsMotionPermission(false);
+    }
+  };
 
   return (
     <main className="app">
@@ -33,6 +62,7 @@ const App = () => {
         tiltMaxAngleY={5}
         glareEnable={!prefersReducedMotion}
         glareMaxOpacity={0.08}
+        gyroscope={!prefersReducedMotion && gyroscopeEnabled}
         scale={1.005}
         transitionSpeed={800}
       >
@@ -42,8 +72,13 @@ const App = () => {
           </h1>
           <Hero />
         </section>
-        <Social />
       </Tilt>
+      {needsMotionPermission && !prefersReducedMotion && (
+        <button className="motion-permission" type="button" onClick={enableMotion}>
+          Enable motion
+        </button>
+      )}
+      <Social />
     </main>
   );
 };

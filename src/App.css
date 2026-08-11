@@ -1,4 +1,5 @@
 .app {
+  position: relative;
   min-height: 100vh;
   min-height: 100svh;
   width: 100%;
@@ -13,6 +14,7 @@
   min-height: 100svh;
   width: 100%;
   padding: clamp(20px, 4vw, 48px);
+  padding-bottom: 104px;
   overflow: hidden;
   transform-style: preserve-3d;
 }
@@ -100,16 +102,50 @@
 }
 
 .social-links {
+  position: fixed;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  left: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
   width: 100%;
-  padding-top: 24px;
+  padding: 20px 16px max(24px, env(safe-area-inset-bottom));
+  pointer-events: none;
 }
 
 .social-link {
   border-radius: 50%;
+  pointer-events: auto;
+}
+
+.motion-permission {
+  position: fixed;
+  z-index: 3;
+  top: max(16px, env(safe-area-inset-top));
+  left: 50%;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid #29abe2;
+  border-radius: 999px;
+  background: #000000;
+  color: #75cef2;
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transform: translateX(-50%);
+}
+
+.motion-permission:hover {
+  background: rgb(41 171 226 / 14%);
+  color: #ffffff;
+}
+
+.motion-permission:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 4px;
 }
 
 .visually-hidden {
@@ -127,6 +163,7 @@
 @media (max-width: 480px) {
   .canvas {
     padding: 16px;
+    padding-bottom: 92px;
   }
 
   .hero-content {
@@ -135,6 +172,7 @@
 
   .social-links {
     gap: 8px;
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
   }
 
   .social-link {
@@ -144,7 +182,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .featured-link {
+  .featured-link,
+  .motion-permission {
     transition: none;
   }
 }

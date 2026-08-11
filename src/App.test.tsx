@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { beforeAll, expect, test, vi } from 'vitest';
 
 import App from './App';
@@ -32,4 +32,24 @@ test('gives every navigation link an accessible name', () => {
   const links = screen.getAllByRole('link');
   expect(links).toHaveLength(7);
   links.forEach((link) => expect(link).toHaveAccessibleName());
+});
+
+test('keeps social links outside the tilting canvas', () => {
+  render(<App />);
+
+  const socialLinks = screen.getByRole('contentinfo', { name: /social profiles/i });
+  expect(socialLinks.closest('.canvas')).toBeNull();
+});
+
+test('requests device-orientation permission on iOS', async () => {
+  const requestPermission = vi.fn().mockResolvedValue('granted');
+  Object.defineProperty(window, 'DeviceOrientationEvent', {
+    configurable: true,
+    value: { requestPermission },
+  });
+
+  render(<App />);
+  fireEvent.click(await screen.findByRole('button', { name: /enable motion/i }));
+
+  await waitFor(() => expect(requestPermission).toHaveBeenCalledOnce());
 });
