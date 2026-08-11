@@ -1,5 +1,23 @@
 import Signature from './Signature';
 
+const MusicIcon = () => (
+  <svg
+    className="link-icon"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.9"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path d="M9.25 19.25a2.75 2.75 0 1 1-2.75-2.75h2.75v2.75Z" />
+    <path d="M18.25 16.75a2.75 2.75 0 1 1-2.75-2.75h2.75v2.75Z" />
+    <path d="M9.25 16.5V6.25l9-2v9.75M9.25 9.25l9-2" />
+  </svg>
+);
+
 const PdfIcon = () => (
   <svg
     className="link-icon"
@@ -41,7 +59,7 @@ const Hero = () => (
     <nav className="featured-links" aria-label="Featured links">
       <a className="featured-link" href="https://music.mukulhase.com">
         <span>My Music</span>
-        <span aria-hidden="true">♫</span>
+        <MusicIcon />
       </a>
       <a
         className="featured-link"
