@@ -45,6 +45,12 @@
   user-select: none;
 }
 
+.signature svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .featured-links {
   display: flex;
   flex-direction: column;
@@ -84,9 +90,11 @@
 }
 
 .featured-link .link-icon {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  flex: 0 0 auto;
+  width: 1.45rem;
+  height: 1.45rem;
+  margin-left: 16px;
+  color: #ff7bac;
 }
 
 .featured-link:hover {

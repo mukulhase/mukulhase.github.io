@@ -7,7 +7,7 @@
             path[data-start] {
                 animation-duration: 5.2s;
                 animation-timing-function: cubic-bezier(.65, 0, .35, 1);
-                animation-iteration-count: infinite;
+                animation-fill-mode: forwards;
             }
             path[data-start="0"], path[data-start="110"] {
                 stroke-dasharray: 3857;

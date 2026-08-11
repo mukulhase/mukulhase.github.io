@@ -17,10 +17,10 @@ beforeAll(() => {
   });
 });
 
-test('uses an HTTPS-safe root-relative résumé link', () => {
+test('uses an HTTPS-safe root-relative work link', () => {
   render(<App />);
 
-  expect(screen.getByRole('link', { name: /résumé/i })).toHaveAttribute(
+  expect(screen.getByRole('link', { name: /my work/i })).toHaveAttribute(
     'href',
     '/Mukul_Hase_Resume/main.pdf',
   );
@@ -30,8 +30,17 @@ test('gives every navigation link an accessible name', () => {
   render(<App />);
 
   const links = screen.getAllByRole('link');
-  expect(links).toHaveLength(7);
+  expect(links).toHaveLength(8);
   links.forEach((link) => expect(link).toHaveAccessibleName());
+});
+
+test('links to the thoughts blog', () => {
+  render(<App />);
+
+  expect(screen.getByRole('link', { name: /my thoughts/i })).toHaveAttribute(
+    'href',
+    'https://blog.mukulhase.com',
+  );
 });
 
 test('keeps social links outside the tilting canvas', () => {
