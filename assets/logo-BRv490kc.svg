@@ -2,6 +2,29 @@
     <defs>
         <style>
             .cls-1,.cls-2{fill:none;stroke-miterlimit:10;stroke-width:8px;}.cls-1{stroke:#29abe2;}.cls-2{stroke:#ff7bac;}
+
+            path[data-ignore="true"] { opacity: 0; }
+            path[data-start] {
+                stroke-dasharray: 2200;
+                stroke-dashoffset: 2200;
+                animation: draw-signature 2.4s cubic-bezier(.65, 0, .35, 1) forwards;
+            }
+            path[data-start="60"] { animation-delay: .55s; }
+            path[data-start="80"] { animation-delay: .85s; }
+            path[data-start="110"] { animation-delay: 1.15s; }
+            path[data-start="180"] { animation-delay: 1.7s; }
+            path[data-start="200"] { animation-delay: 2s; }
+
+            @keyframes draw-signature {
+                to { stroke-dashoffset: 0; }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                path[data-start] {
+                    animation: none;
+                    stroke-dashoffset: 0;
+                }
+            }
         </style>
     </defs>
     <title>logo2</title>
