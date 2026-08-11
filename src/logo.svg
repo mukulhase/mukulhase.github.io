@@ -5,18 +5,52 @@
 
             path[data-ignore="true"] { opacity: 0; }
             path[data-start] {
-                stroke-dasharray: 2200;
-                stroke-dashoffset: 2200;
-                animation: draw-signature 2.4s cubic-bezier(.65, 0, .35, 1) forwards;
+                animation-duration: 5.2s;
+                animation-timing-function: cubic-bezier(.65, 0, .35, 1);
+                animation-iteration-count: infinite;
             }
-            path[data-start="60"] { animation-delay: .55s; }
-            path[data-start="80"] { animation-delay: .85s; }
-            path[data-start="110"] { animation-delay: 1.15s; }
-            path[data-start="180"] { animation-delay: 1.7s; }
-            path[data-start="200"] { animation-delay: 2s; }
+            path[data-start="0"], path[data-start="110"] {
+                stroke-dasharray: 3857;
+                stroke-dashoffset: 3857;
+            }
+            path[data-start="60"], path[data-start="180"] {
+                stroke-dasharray: 1045;
+                stroke-dashoffset: 1045;
+            }
+            path[data-start="80"], path[data-start="200"] {
+                stroke-dasharray: 630;
+                stroke-dashoffset: 630;
+            }
+            path[data-start="0"] { animation-name: draw-0; }
+            path[data-start="60"] { animation-name: draw-60; }
+            path[data-start="80"] { animation-name: draw-80; }
+            path[data-start="110"] { animation-name: draw-110; }
+            path[data-start="180"] { animation-name: draw-180; }
+            path[data-start="200"] { animation-name: draw-200; }
 
-            @keyframes draw-signature {
-                to { stroke-dashoffset: 0; }
+            @keyframes draw-0 {
+                0% { stroke-dashoffset: 3857; }
+                23.077%, 100% { stroke-dashoffset: 0; }
+            }
+            @keyframes draw-60 {
+                0%, 23.077% { stroke-dashoffset: 1045; }
+                30.769%, 100% { stroke-dashoffset: 0; }
+            }
+            @keyframes draw-80 {
+                0%, 30.769% { stroke-dashoffset: 630; }
+                46.154%, 100% { stroke-dashoffset: 0; }
+            }
+            @keyframes draw-110 {
+                0%, 42.308% { stroke-dashoffset: 3857; }
+                69.231%, 100% { stroke-dashoffset: 0; }
+            }
+            @keyframes draw-180 {
+                0%, 69.231% { stroke-dashoffset: 1045; }
+                76.923%, 100% { stroke-dashoffset: 0; }
+            }
+            @keyframes draw-200 {
+                0%, 76.923% { stroke-dashoffset: 630; }
+                92.308%, 100% { stroke-dashoffset: 0; }
             }
 
             @media (prefers-reduced-motion: reduce) {
